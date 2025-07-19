@@ -1,0 +1,676 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fix hosting display issues and ensure consistent rendering */
+html {
+  font-size: 16px !important;
+  -webkit-text-size-adjust: 100% !important;
+  -ms-text-size-adjust: 100% !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  text-rendering: optimizeLegibility !important;
+  zoom: 1 !important;
+}
+
+body {
+  font-size: 16px !important;
+  line-height: 1.5 !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  min-height: 100vh !important;
+  overflow-x: hidden !important;
+}
+
+/* Ensure consistent sizing across browsers and hosting platforms */
+* {
+  box-sizing: border-box !important;
+}
+
+/* Force consistent viewport and prevent zoom issues */
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+}
+
+/* Prevent font size adjustments on mobile devices */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 14px !important;
+    -webkit-text-size-adjust: none !important;
+    -ms-text-size-adjust: none !important;
+  }
+  
+  body {
+    font-size: 14px !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 13px !important;
+    -webkit-text-size-adjust: none !important;
+    -ms-text-size-adjust: none !important;
+  }
+  
+  body {
+    font-size: 13px !important;
+  }
+}
+
+/* Ensure consistent image rendering */
+img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  image-rendering: -webkit-optimize-contrast !important;
+  image-rendering: crisp-edges !important;
+}
+
+/* Override for SVG icons to maintain original sizes */
+svg {
+  width: auto !important;
+  height: auto !important;
+  display: inline-block !important;
+}
+
+/* Specific overrides for Lucide icons */
+.lucide {
+  width: auto !important;
+  height: auto !important;
+  display: inline-block !important;
+}
+
+/* Maintain icon sizes in Services component */
+.h-6 {
+  height: 1.5rem !important;
+}
+
+.w-6 {
+  width: 1.5rem !important;
+}
+
+.h-8 {
+  height: 2rem !important;
+}
+
+.w-8 {
+  width: 2rem !important;
+}
+
+.h-12 {
+  height: 3rem !important;
+}
+
+.w-12 {
+  width: 3rem !important;
+}
+
+.h-16 {
+  height: 4rem !important;
+}
+
+.w-16 {
+  width: 4rem !important;
+}
+
+/* Force consistent container widths */
+.container {
+  width: 100% !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+}
+
+/* Prevent layout shifts */
+.w-full {
+  width: 100% !important;
+}
+
+.h-full {
+  height: 100% !important;
+}
+
+/* Ensure consistent animation performance */
+* {
+  will-change: auto !important;
+}
+
+.animate-pulse,
+.animate-bounce,
+.animate-spin {
+  animation-fill-mode: both !important;
+  animation-timing-function: ease-in-out !important;
+}
+
+/* Media queries already handled above with !important declarations */
+
+@keyframes pulse-rotate {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.05) rotate(90deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(180deg);
+  }
+  75% {
+    transform: scale(1.05) rotate(270deg);
+  }
+}
+
+@keyframes pulse-rotate-heartbeat {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  10% {
+    transform: scale(1.1) rotate(36deg);
+  }
+  20% {
+    transform: scale(1.2) rotate(72deg);
+  }
+  30% {
+    transform: scale(1.1) rotate(108deg);
+  }
+  40% {
+    transform: scale(1.3) rotate(144deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+  }
+  60% {
+    transform: scale(1.3) rotate(216deg);
+  }
+  70% {
+    transform: scale(1.1) rotate(252deg);
+  }
+  80% {
+    transform: scale(1.2) rotate(288deg);
+  }
+  90% {
+    transform: scale(1.1) rotate(324deg);
+  }
+}
+
+.animate-pulse-rotate {
+  animation: pulse-rotate 4s ease-in-out infinite;
+}
+
+.animate-pulse-rotate-heartbeat {
+  animation: pulse-rotate-heartbeat 4s ease-in-out infinite;
+}
+
+/* Card Hover Animations */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.card-hover-subtle {
+  transition: all 0.3s ease;
+}
+
+.card-hover-subtle:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.card-hover-scale {
+  transition: all 0.3s ease;
+}
+
+.card-hover-scale:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.card-hover-glow {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-hover-glow:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(59, 130, 246, 0.15);
+}
+
+.card-hover-glow:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: shimmer 0.6s ease-in-out;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.card-hover-bounce {
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.card-hover-bounce:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.card-hover-rotate {
+  transition: all 0.3s ease;
+}
+
+.card-hover-rotate:hover {
+  transform: translateY(-5px) rotate(2deg);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.card-hover-flip {
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+}
+
+.card-hover-flip:hover {
+  transform: translateY(-8px) rotateY(5deg);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Animated Background Cubes */
+.animated-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.cube {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: solid 1px #3b82f6;
+  transform-origin: top left;
+  transform: scale(0) rotate(0deg) translate(-50%, -50%);
+  animation: cube 12s ease-in forwards infinite;
+  opacity: 0.6;
+}
+
+.cube:nth-child(2n) {
+  border-color: #60a5fa;
+}
+
+.cube:nth-child(3n) {
+  border-color: #93c5fd;
+}
+
+.cube:nth-child(4n) {
+  border-color: #dbeafe;
+}
+
+.cube:nth-child(1) {
+  top: 80%;
+  left: 45%;
+  animation-delay: 0s;
+}
+
+.cube:nth-child(2) {
+  animation-delay: 2s;
+  left: 25%;
+  top: 40%;
+}
+
+.cube:nth-child(3) {
+  animation-delay: 4s;
+  left: 75%;
+  top: 50%;
+}
+
+.cube:nth-child(4) {
+  animation-delay: 6s;
+  left: 90%;
+  top: 10%;
+}
+
+.cube:nth-child(5) {
+  animation-delay: 8s;
+  left: 10%;
+  top: 85%;
+}
+
+.cube:nth-child(6) {
+  animation-delay: 10s;
+  left: 50%;
+  top: 10%;
+}
+
+.cube:nth-child(7) {
+  animation-delay: 1s;
+  left: 15%;
+  top: 20%;
+}
+
+.cube:nth-child(8) {
+  animation-delay: 3s;
+  left: 85%;
+  top: 70%;
+}
+
+.cube:nth-child(9) {
+  animation-delay: 5s;
+  left: 60%;
+  top: 30%;
+}
+
+.cube:nth-child(10) {
+  animation-delay: 7s;
+  left: 30%;
+  top: 80%;
+}
+
+.cube:nth-child(11) {
+  animation-delay: 9s;
+  left: 70%;
+  top: 15%;
+}
+
+.cube:nth-child(12) {
+  animation-delay: 11s;
+  left: 40%;
+  top: 60%;
+}
+
+@keyframes cube {
+  from {
+    transform: scale(0) rotate(0deg) translate(-50%, -50%);   
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(20) rotate(960deg) translate(-50%, -50%); 
+    opacity: 0;
+  }
+}
+
+/* Floating particles for additional effect */
+.floating-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #3b82f6;
+  border-radius: 50%;
+  animation: float 15s infinite linear;
+  opacity: 0.3;
+}
+
+.particle:nth-child(odd) {
+  background: #60a5fa;
+}
+
+.particle:nth-child(3n) {
+  background: #93c5fd;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.3;
+  }
+  90% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* SweetAlert2 Custom Styles */
+.swal-custom-popup {
+  border-radius: 16px !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.swal-custom-title {
+  font-weight: 700 !important;
+  font-size: 1.5rem !important;
+  color: #1f2937 !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.swal-custom-content {
+  font-size: 1rem !important;
+  color: #6b7280 !important;
+  line-height: 1.5 !important;
+}
+
+.swal-toast-popup {
+  border-radius: 12px !important;
+  font-family: 'Inter', sans-serif !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* SweetAlert2 button customization */
+.swal2-confirm {
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1.5rem !important;
+  font-size: 0.875rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.swal2-cancel {
+  border-radius: 8px !important;
+  font-weight: 600 !important;
+  padding: 0.75rem 1.5rem !important;
+  font-size: 0.875rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.swal2-confirm:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+.swal2-cancel:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* SweetAlert2 icon customization */
+.swal2-icon {
+  border: none !important;
+  margin: 1rem auto 1.5rem !important;
+}
+
+.swal2-icon.swal2-success {
+  color: #10b981 !important;
+}
+
+.swal2-icon.swal2-error {
+  color: #ef4444 !important;
+}
+
+.swal2-icon.swal2-warning {
+  color: #f59e0b !important;
+}
+
+.swal2-icon.swal2-info {
+  color: #3b82f6 !important;
+}
+
+.swal2-icon.swal2-question {
+  color: #8b5cf6 !important;
+}
+
+/* SweetAlert2 loading animation */
+.swal2-loading .swal2-icon {
+  animation: swal2-loading 1.5s linear infinite !important;
+}
+
+@keyframes swal2-loading {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Custom bounce animation for welcome alert */
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) translateY(-50px);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05) translateY(0);
+  }
+  70% {
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Pulse animation for welcome popup */
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Fade out animation for closing alerts */
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+/* SweetAlert2 timer progress bar */
+.swal2-timer-progress-bar {
+  background: rgba(59, 130, 246, 0.8) !important;
+  height: 3px !important;
+}
+
+/* Dark mode support for SweetAlert2 */
+@media (prefers-color-scheme: dark) {
+  .swal-custom-popup {
+    background-color: #1f2937 !important;
+  }
+  
+  .swal-custom-title {
+    color: #f9fafb !important;
+  }
+  
+  .swal-custom-content {
+    color: #d1d5db !important;
+  }
+}
+
+/* Mobile AOS Animation Override */
+@media (max-width: 768px) {
+  /* Override all AOS animations on mobile to use only fade-right and fade-left */
+  [data-aos="fade-up"],
+  [data-aos="fade-down"],
+  [data-aos="zoom-in"],
+  [data-aos="zoom-out"],
+  [data-aos="flip-left"],
+  [data-aos="flip-right"],
+  [data-aos="slide-up"],
+  [data-aos="slide-down"] {
+    transform: translateX(-50px);
+    opacity: 0;
+    transition: all 0.6s ease;
+  }
+  
+  [data-aos="fade-up"].aos-animate,
+  [data-aos="fade-down"].aos-animate,
+  [data-aos="zoom-in"].aos-animate,
+  [data-aos="zoom-out"].aos-animate,
+  [data-aos="flip-left"].aos-animate,
+  [data-aos="flip-right"].aos-animate,
+  [data-aos="slide-up"].aos-animate,
+  [data-aos="slide-down"].aos-animate {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+  /* Alternate sections with fade-left */
+  .mobile-fade-left [data-aos="fade-up"],
+  .mobile-fade-left [data-aos="fade-down"],
+  .mobile-fade-left [data-aos="zoom-in"],
+  .mobile-fade-left [data-aos="zoom-out"],
+  .mobile-fade-left [data-aos="flip-left"],
+  .mobile-fade-left [data-aos="flip-right"],
+  .mobile-fade-left [data-aos="slide-up"],
+  .mobile-fade-left [data-aos="slide-down"] {
+    transform: translateX(50px);
+    opacity: 0;
+  }
+  
+  .mobile-fade-left [data-aos="fade-up"].aos-animate,
+  .mobile-fade-left [data-aos="fade-down"].aos-animate,
+  .mobile-fade-left [data-aos="zoom-in"].aos-animate,
+  .mobile-fade-left [data-aos="zoom-out"].aos-animate,
+  .mobile-fade-left [data-aos="flip-left"].aos-animate,
+  .mobile-fade-left [data-aos="flip-right"].aos-animate,
+  .mobile-fade-left [data-aos="slide-up"].aos-animate,
+  .mobile-fade-left [data-aos="slide-down"].aos-animate {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

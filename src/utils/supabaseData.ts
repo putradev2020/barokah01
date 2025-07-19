@@ -412,7 +412,7 @@ export const fetchTechnicians = async () => {
 // Admin functions
 export const updateBookingStatus = async (bookingId: string, status: string) => {
   try {
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from('service_bookings')
       .update({ status })
       .eq('id', bookingId);
@@ -420,7 +420,7 @@ export const updateBookingStatus = async (bookingId: string, status: string) => 
     if (error) throw error;
 
     // Update timeline
-    await supabase
+    const { error: timelineError } = await supabase
       .from('booking_timeline')
       .update({ 
         completed: true, 
@@ -429,16 +429,20 @@ export const updateBookingStatus = async (bookingId: string, status: string) => 
       .eq('booking_id', bookingId)
       .eq('status', status);
 
+    if (timelineError) {
+      console.warn('Timeline update failed:', timelineError);
+    }
+
     return true;
   } catch (error) {
     console.error('Error updating booking status:', error);
-    return false;
+    throw error;
   }
 };
 
 export const assignTechnician = async (bookingId: string, technicianId: string) => {
   try {
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from('service_bookings')
       .update({ technician_id: technicianId })
       .eq('id', bookingId);
@@ -447,13 +451,13 @@ export const assignTechnician = async (bookingId: string, technicianId: string) 
     return true;
   } catch (error) {
     console.error('Error assigning technician:', error);
-    return false;
+    throw error;
   }
 };
 
 export const updateActualCost = async (bookingId: string, actualCost: string) => {
   try {
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from('service_bookings')
       .update({ actual_cost: actualCost })
       .eq('id', bookingId);
@@ -462,6 +466,62 @@ export const updateActualCost = async (bookingId: string, actualCost: string) =>
     return true;
   } catch (error) {
     console.error('Error updating actual cost:', error);
-    return false;
+    throw error;
+  }
+};
+
+// Delete booking (soft delete)
+export const deleteBooking = async (bookingId: string) => {
+  try {
+    const { data, error } = await supabase
+      .from('service_bookings')
+      .delete()
+      .eq('id', bookingId);
+
+    if (error) throw error;
+    return true;
+  } catch (error) {
+    console.error('Error deleting booking:', error);
+    throw error;
+  }
+};
+
+// Update booking details
+export const updateBookingDetails = async (bookingId: string, updates: any) => {
+  try {
+    const { data, error } = await supabase
+      .from('service_bookings')
+      .update(updates)
+      .eq('id', bookingId);
+
+    if (error) throw error;
+    return true;
+  } catch (error) {
+    console.error('Error updating booking details:', error);
+    throw error;
+  }
+};
+
+// Get booking details for editing
+export const getBookingForEdit = async (bookingId: string) => {
+  try {
+    const { data: booking, error } = await supabase
+      .from('service_bookings')
+      .select(`
+        *,
+        customer:customers(*),
+        printer_brand:printer_brands(*),
+        printer_model:printer_models(*),
+        problem_category:problem_categories(*),
+        technician:technicians(*)
+      `)
+      .eq('id', bookingId)
+      .single();
+
+    if (error) throw error;
+    return booking;
+  } catch (error) {
+    console.error('Error fetching booking for edit:', error);
+    throw error;
   }
 };

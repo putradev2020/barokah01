@@ -108,7 +108,9 @@ export const saveBookingToSupabase = async (formData: BookingFormData): Promise<
       .from('printer_models')
       .select('id')
       .eq('name', formData.printerModel)
-      .single();
+      .eq('brand_id', brand?.id)
+      .eq('is_active', true)
+      .maybeSingle();
 
     console.log('Looking up problem category:', formData.problemCategory);
     const { data: category } = await supabase
